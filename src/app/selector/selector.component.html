@@ -1,0 +1,6 @@
+<ul>
+  <li *ngFor="let item of items">
+    <button (click)="onSelect(item)">{{item}}</button>
+  </li>
+  <li *ngIf="selectorService.getSelectedItem()">Selected: {{selectorService.getSelectedItem()}}</li>
+</ul>
