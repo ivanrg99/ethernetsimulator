@@ -2,3 +2,6 @@ ul {
     padding: 1em;
     list-style-type: none;
 }
+label {
+    color: red;
+}

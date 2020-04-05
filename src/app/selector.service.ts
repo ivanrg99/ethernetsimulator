@@ -13,5 +13,4 @@ export class SelectorService {
   public getSelectedItem() {
     return this.selectedItem;
   }
-
 }

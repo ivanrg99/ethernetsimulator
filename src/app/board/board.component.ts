@@ -6,6 +6,8 @@ import {
 } from '@angular/core';
 import { SelectorService } from '../selector.service';
 import { Item } from '../item';
+import { BoardService } from '../board.service';
+import { Drawable } from '../drawable';
 
 @Component({
   selector: 'app-board',
@@ -19,7 +21,7 @@ export class BoardComponent implements AfterViewInit {
   private context: CanvasRenderingContext2D;
   items: Item[] = [];
 
-  constructor(private selectorService: SelectorService) {
+  constructor(private selectorService: SelectorService, private boardService: BoardService) {
   }
 
   ngAfterViewInit(): void {
@@ -27,6 +29,7 @@ export class BoardComponent implements AfterViewInit {
     this.context = canvasEl.getContext('2d', {
       alpha: false
     });
+
     canvasEl.width = this.width;
     canvasEl.height = this.height;
 
@@ -36,6 +39,9 @@ export class BoardComponent implements AfterViewInit {
 
     canvasEl.addEventListener('mousedown', this.captureEvents.bind(this));
 
+    this.boardService.setDrawable(new Drawable(this.context, canvasEl));
+    this.boardService.flush();
+
   }
 
   //TODO: Make board service that talks with renderer
@@ -44,13 +50,7 @@ export class BoardComponent implements AfterViewInit {
     const y = ev.clientY;
     const type = this.selectorService.getSelectedItem();
     if (type == undefined) return;
-    this.items.push(new Item(x, y, type));
-    console.clear();
-    this.items.forEach(element => {
-      console.log(element);
-      
-    });
-
+    this.boardService.addItem(new Item(x, y, type, "#d3d3d3", type));
   }
 
 }

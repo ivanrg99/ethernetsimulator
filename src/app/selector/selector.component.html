@@ -2,5 +2,5 @@
   <li *ngFor="let item of items">
     <button (click)="onSelect(item)">{{item}}</button>
   </li>
-  <li *ngIf="selectorService.getSelectedItem()">Selected: {{selectorService.getSelectedItem()}}</li>
-</ul>
+  <li *ngIf="selectorService.getSelectedItem()">Selected: <label>{{selectorService.getSelectedItem()}}</label></li>
+  <button *ngIf="boardService.items.length" (click)="boardService.flush()">Clear board</button> </ul>
