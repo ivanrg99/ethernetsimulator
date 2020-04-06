@@ -62,12 +62,20 @@ export class RendererService {
   }
   private drawRectangle(drb, item) {
     drb.cx.fillStyle = item.color;
+    const widthOffset = (this.WIDTH + (this.WIDTH / 2));
+    const heightOffset = this.HEIGHT*2 - (this.HEIGHT/2);
+    console.log(widthOffset + " --- " + heightOffset);
+
     const x = item.x - (this.WIDTH + (this.WIDTH / 2));
     const y = item.y - this.HEIGHT*2 - (this.HEIGHT/2);
     drb.cx.fillRect(x, y, this.WIDTH, this.HEIGHT);
 
   }
   private drawCircle(drb, item) {
+    const widthOffset = this.WIDTH;
+    const heightOffset = this.HEIGHT*2;
+    console.log(widthOffset + " --- " + heightOffset);
+
     const centerX = item.x - this.WIDTH;
     const centerY = item.y - this.HEIGHT*2;
     const radius = 32;
@@ -78,6 +86,10 @@ export class RendererService {
     drb.cx.fill();
   }
   private drawDiamond(drb, item) {
+    const widthOffset = this.WIDTH;
+    const heightOffset = (this.HEIGHT*2+this.HEIGHT/2);
+    console.log(widthOffset + " --- " + heightOffset);
+
     drb.cx.fillStyle = item.color;
     const x = item.x - this.WIDTH;
     const y = item.y - (this.HEIGHT*2+this.HEIGHT/2);
